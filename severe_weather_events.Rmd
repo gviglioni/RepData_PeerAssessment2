@@ -39,7 +39,11 @@ From the Coursera "Reproducible Research" course
 we obtain the storm data in bzip archive format and extract it.
 
 ```{r download.data,cache=T,eval=F}
-download.file("http://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2", destfile="repdata-data-StormData.csv.bz2")
+bzFilename <- "repdata-data-StormData.csv.bz2"
+
+fileUrl <- "https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2FStormData.csv.bz2"
+
+download.file(fileUrl, destfile = bzFilename)
 
 bunzip2("repdata-data-StormData.csv.bz2", overwrite=T, remove=F)
 ```
@@ -49,7 +53,6 @@ then convert to a data.table for efficiency of later operations.
 
 ```{r read.data,cache=T}
 storm = read.csv("repdata-data-StormData.csv")
-#storm = read.csv("slice.csv")
 storm = data.table(storm)
 ```
 
@@ -79,7 +82,6 @@ storm$year = as.numeric(format(as.Date(storm$BGN_DATE, format="%m/%d/%Y %H:%M:%S
 stormsByYear = storm[, lapply(.SD,length), by=year, .SDcols=1]
 setnames(stormsByYear, 2, "count")
 
-#ggplot(stormsByYear) + geom_line(aes(year, count))
 ```
 
 From a plot, we see that the number of events tracked starts to significantly pick up around 1995.
