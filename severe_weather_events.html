@@ -220,7 +220,6 @@ bunzip2(&quot;repdata-data-StormData.csv.bz2&quot;, overwrite=T, remove=F)
 then convert to a data.table for efficiency of later operations.</p>
 
 <pre><code class="r">storm = read.csv(&quot;repdata-data-StormData.csv&quot;)
-# storm = read.csv(&#39;slice.csv&#39;)
 storm = data.table(storm)
 </code></pre>
 
