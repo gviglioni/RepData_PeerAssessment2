@@ -274,7 +274,6 @@ recorded events, as this may indicate better record-keeping.</p>
 stormsByYear = storm[, lapply(.SD, length), by = year, .SDcols = 1]
 setnames(stormsByYear, 2, &quot;count&quot;)
 
-# ggplot(stormsByYear) + geom_line(aes(year, count))
 </code></pre>
 
 <p>From a plot, we see that the number of events tracked starts to significantly pick up around 1995.
